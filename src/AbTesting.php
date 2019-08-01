@@ -77,7 +77,7 @@ class AbTesting
         }
 
         if ($visitor_id) {
-            return $this->visitor = DatabaseVisitor::firstOrCreate(['visitor_id' => $visitor_id]);
+            return $this->visitor = DatabaseVisitor::firstOrNew(['visitor_id' => $visitor_id]);
         } else {
             return $this->visitor = new SessionVisitor();
         }
