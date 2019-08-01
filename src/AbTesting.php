@@ -70,7 +70,7 @@ class AbTesting
      *
      * @return void
      */
-    public function initVisitor($visitor_id)
+    public function initVisitor($visitor_id = null)
     {
         if ( !is_null($this->visitor) ) {
             return $this->visitor;

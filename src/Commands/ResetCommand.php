@@ -5,7 +5,7 @@ namespace Ben182\AbTesting\Commands;
 use Illuminate\Console\Command;
 use Ben182\AbTesting\Models\Goal;
 use Ben182\AbTesting\Models\Experiment;
-use Ben182\AbTesting\Models\Visitor;
+use Ben182\AbTesting\Models\DatabaseVisitor;
 
 
 class ResetCommand extends Command
@@ -43,7 +43,7 @@ class ResetCommand extends Command
     {
         Goal::truncate();
         Experiment::truncate();
-        Visitor::truncate();
+        DatabaseVisitor::truncate();
 
         $this->info('Successfully deleted all experiment visitors and goal completions.');
     }

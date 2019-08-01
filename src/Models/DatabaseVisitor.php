@@ -25,7 +25,7 @@ class DatabaseVisitor extends Model implements VisitorInterface
     }
 
     public function getExperiment() {
-        return $this->experiment_id;
+        return $this->experiment;
     }
 
     public function setExperiment(Experiment $next) {
