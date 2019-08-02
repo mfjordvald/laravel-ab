@@ -64,11 +64,11 @@ class AbTesting
     }
 
    /**
-     * Validates the config items and puts them into models.
+     * Initiates the correct visitor model.
      *
      * @param integer $visitor_id An optional visitor identifier
      *
-     * @return void
+     * @return \Ben182\AbTesting\Models\SessionVisitor|\Ben182\AbTesting\Models\DatabaseVisitor
      */
     public function initVisitor($visitor_id = null)
     {
@@ -83,6 +83,18 @@ class AbTesting
         }
     }
 
+   /**
+     * Resets the visitor data.
+     *
+     *
+     * @return void
+     */
+    public function resetVisitor()
+    {
+        session()->flush();
+        $this->visitor = null;
+    }
+
     /**
      * Triggers a new visitor. Picks a new experiment and saves it to the Visitor.
      *
@@ -94,7 +106,7 @@ class AbTesting
     {
         $visitor = $this->getVisitor($visitor_id);
 
-        if (!$visitor->hasExperiment()) {
+        if (! session(self::SESSION_KEY_GOALS)) {
             $this->start();
             $this->setNextExperiment($visitor);
 
