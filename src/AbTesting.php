@@ -64,28 +64,7 @@ class AbTesting
     }
 
    /**
-     * Initiates the correct visitor model.
-     *
-     * @param integer $visitor_id An optional visitor identifier
-     *
-     * @return \Ben182\AbTesting\Models\SessionVisitor|\Ben182\AbTesting\Models\DatabaseVisitor
-     */
-    public function initVisitor($visitor_id = null)
-    {
-        if ( !is_null($this->visitor) ) {
-            return $this->visitor;
-        }
-
-        if ($visitor_id) {
-            return $this->visitor = DatabaseVisitor::firstOrNew(['visitor_id' => $visitor_id]);
-        } else {
-            return $this->visitor = new SessionVisitor();
-        }
-    }
-
-   /**
      * Resets the visitor data.
-     *
      *
      * @return void
      */
@@ -226,6 +205,14 @@ class AbTesting
      */
     public function getVisitor($visitor_id = null)
     {
-        return $this->initVisitor($visitor_id);
+        if ( !is_null($this->visitor) ) {
+            return $this->visitor;
+        }
+
+        if ($visitor_id) {
+            return $this->visitor = DatabaseVisitor::firstOrNew(['visitor_id' => $visitor_id]);
+        } else {
+            return $this->visitor = new SessionVisitor();
+        }
     }
 }
